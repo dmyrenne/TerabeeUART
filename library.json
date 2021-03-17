@@ -1,0 +1,15 @@
+{
+    "name": "TerabeeUART",
+    "version": "1.0.0",
+    "description":"Reads Terabee EvoMini Sensors via UART.",
+    "repository":
+    {
+        "type": "git",
+        "url": "git@github.com:dmyrenne/TerabeeUART.git"
+    },
+    "authors":
+    {
+        "name": "Daniel Myrenne",
+        "email": "daniel.myrenne@gmail.com"
+    }
+}
