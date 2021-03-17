@@ -45,14 +45,6 @@ TerabeeUART::TerabeeUART(SoftwareSerial& serial) : _port(serial) {
 }
 
 void TerabeeUART::begin(){
-/*   if(hwSerial) {
-    Serial.println("HW Serial selected");
-    static_cast<HardwareSerial*>(_port)->begin(UART_BAUD);
-  } else {
-    Serial.println("SW Serial selected");
-    static_cast<SoftwareSerial*>(_port)->begin(UART_BAUD);
-  } */
-
   _port.write(pixelModeList[_pixelMode], 4);
   _port.write(rangeModeList[_range], 4);
   _port.write(styleList[_style], 4);
