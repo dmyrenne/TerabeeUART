@@ -8,7 +8,7 @@
  * @param pixelMode select how the sensors are read by the hub
  * @param style Text or Binary mode
  */
-TerabeeUart::TerabeeUart(HardwareSerial& serial, byte rangeMode, byte pixelMode, byte style) : _port(serial) {
+TerabeeUART::TerabeeUART(HardwareSerial& serial, byte rangeMode, byte pixelMode, byte style) : _port(serial) {
   hwSerial = true;
   _style = style;
   _range = rangeMode;
@@ -18,7 +18,7 @@ TerabeeUart::TerabeeUart(HardwareSerial& serial, byte rangeMode, byte pixelMode,
   begin();
 }
 
-TerabeeUart::TerabeeUart(SoftwareSerial& serial, byte rangeMode, byte pixelMode, byte style) : _port(serial) {
+TerabeeUART::TerabeeUART(SoftwareSerial& serial, byte rangeMode, byte pixelMode, byte style) : _port(serial) {
   hwSerial = false;
   _style = style;
   _range = rangeMode;
@@ -32,19 +32,19 @@ TerabeeUart::TerabeeUart(SoftwareSerial& serial, byte rangeMode, byte pixelMode,
  * @brief Setup communication between microcontroller and Terabee EvoHub
  * @param serial Select which Serial _port you want to use. Hardware- and SoftwareSerial are supported.
  */
-TerabeeUart::TerabeeUart(HardwareSerial& serial) : _port(serial) {
+TerabeeUART::TerabeeUART(HardwareSerial& serial) : _port(serial) {
   hwSerial = true;
   this->_port = serial;
   serial.begin(UART_BAUD);
 }
 
-TerabeeUart::TerabeeUart(SoftwareSerial& serial) : _port(serial) {
+TerabeeUART::TerabeeUART(SoftwareSerial& serial) : _port(serial) {
   hwSerial = false;
   this->_port = serial;
   serial.begin(UART_BAUD);
 }
 
-void TerabeeUart::begin(){
+void TerabeeUART::begin(){
 /*   if(hwSerial) {
     Serial.println("HW Serial selected");
     static_cast<HardwareSerial*>(_port)->begin(UART_BAUD);
@@ -64,7 +64,7 @@ void TerabeeUart::begin(){
  * @brief Reads, translates and returns distance(s) from the sensor when using BINARY mode
  * @param[out] pixel1 in mm. 0 if CRC check fails on reading
  */
-void TerabeeUart::read(int &pixel1){
+void TerabeeUART::read(int &pixel1){
 
   pixel1 = dist;
 
@@ -74,7 +74,7 @@ void TerabeeUart::read(int &pixel1){
  * @param[out] pixel1 in mm. 0 if CRC check fails on reading
  * @param[out] pixel2 in mm. -1 if you use Singel-Pixel mode.
  */
-void TerabeeUart::read(int &pixel1, int &pixel2){
+void TerabeeUART::read(int &pixel1, int &pixel2){
 
   pixel1 = dist;
   pixel2 = dist1;
@@ -87,7 +87,7 @@ void TerabeeUart::read(int &pixel1, int &pixel2){
  * @param[out] pixel3 in mm. -1 if you use Singel-Pixel mode.
  * @param[out] pixel4 in mm. -1 if you use Singel-Pixel mode.
  */
-void TerabeeUart::read(int &pixel1, int &pixel2, int &pixel3, int &pixel4){
+void TerabeeUART::read(int &pixel1, int &pixel2, int &pixel3, int &pixel4){
 
   pixel1 = dist;
   pixel2 = dist1;
@@ -96,7 +96,7 @@ void TerabeeUart::read(int &pixel1, int &pixel2, int &pixel3, int &pixel4){
 
 }
 
-void TerabeeUart::update(){
+void TerabeeUART::update(){
   if (_port.available() > 0) {
     // Send data only when you receive data
     uint8_t inChar = _port.read();  
@@ -151,7 +151,7 @@ void TerabeeUart::update(){
   }
 }
 
-uint8_t TerabeeUart::crc8(uint8_t *p, uint8_t len) {
+uint8_t TerabeeUART::crc8(uint8_t *p, uint8_t len) {
   uint8_t i;
   uint8_t crc = 0x0;
   while (len--) {

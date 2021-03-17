@@ -68,13 +68,13 @@ const byte pixelModeList[3][4]   = {{0x00, 0x21, 0x01, 0xBC},
  */
 #define UART_BAUD            115200
 
-class TerabeeUart {
+class TerabeeUART {
 
     public:
-        TerabeeUart(HardwareSerial& serial, byte rangeMode, byte pixelMode, byte style = BINARY);
-        TerabeeUart(SoftwareSerial& serial, byte rangeMode, byte pixelMode, byte style = BINARY);
-        TerabeeUart(HardwareSerial& serial);
-        TerabeeUart(SoftwareSerial& serial);
+        TerabeeUART(HardwareSerial& serial, byte rangeMode, byte pixelMode, byte style = BINARY);
+        TerabeeUART(SoftwareSerial& serial, byte rangeMode, byte pixelMode, byte style = BINARY);
+        TerabeeUART(HardwareSerial& serial);
+        TerabeeUART(SoftwareSerial& serial);
         void read(int &pixel1);
         void read(int &pixel1, int &pixel2);
         void read(int &pixel1, int &pixel2, int &pixel3);
